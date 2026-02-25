@@ -191,6 +191,31 @@ with st.sidebar:
         surah_number = random.randint(1, 114)
         st.info(f"🎲 Random: Surah #{surah_number}")
     
+    # Determine max ayahs for the selected surah (use local content if available)
+    surah_max_ayahs = 286
+    try:
+        with open("content/surah.json", encoding="utf-8") as f:
+            sd = json.load(f)
+            if sd.get("surah_number") == surah_number:
+                surah_max_ayahs = sd.get("number_of_ayahs", surah_max_ayahs)
+    except Exception:
+        pass
+
+    # Ensure session_state defaults are within bounds to avoid Streamlit widget errors
+    try:
+        ss_start = int(st.session_state.get('ayah_start_val', 1))
+    except Exception:
+        ss_start = 1
+    try:
+        ss_end = int(st.session_state.get('ayah_end_val', 10))
+    except Exception:
+        ss_end = 10
+
+    ss_start = max(1, min(ss_start, surah_max_ayahs))
+    ss_end = max(ss_start, min(ss_end, surah_max_ayahs))
+    st.session_state['ayah_start_val'] = ss_start
+    st.session_state['ayah_end_val'] = ss_end
+
     st.subheader("🎙️ Reciter")
     reciter = st.selectbox("Reciter:", ["alafasy", "basit", "husary"],
                           format_func=lambda x: {"alafasy": "Alafasy", "basit": "Abdul Basit", "husary": "Husary"}[x])
@@ -298,7 +323,7 @@ with tab3:
     with col4:
         if st.button("Full Surah", use_container_width=True):
             st.session_state.ayah_start_val = 1
-            st.session_state.ayah_end_val = 286  # Max ayahs
+            st.session_state.ayah_end_val = surah_max_ayahs  # Max ayahs for selected surah
     
     # Manual range input
     col1, col2 = st.columns(2)
@@ -307,6 +332,7 @@ with tab3:
             "Start Ayah:", 
             value=st.session_state.get('ayah_start_val', 1), 
             min_value=1, 
+            max_value=surah_max_ayahs,
             step=1
         )
     with col2:
@@ -314,6 +340,7 @@ with tab3:
             "End Ayah:", 
             value=st.session_state.get('ayah_end_val', 10), 
             min_value=1, 
+            max_value=surah_max_ayahs,
             step=1
         )
 
@@ -363,6 +390,17 @@ with tab4:
                 save_settings(settings)
 
                 # Pre-cache audio for selected ayah range to speed generation
+                # Defensive clamp: ensure requested ayah range doesn't exceed surah length
+                try:
+                    with open("content/surah.json", encoding="utf-8") as f:
+                        sd = json.load(f)
+                        if sd.get("surah_number") == surah_number:
+                            max_ayahs = sd.get("number_of_ayahs", None)
+                            if max_ayahs is not None:
+                                ayah_start = max(1, min(int(ayah_start), max_ayahs))
+                                ayah_end = max(ayah_start, min(int(ayah_end), max_ayahs))
+                except Exception:
+                    pass
                 total_ayahs = int(ayah_end) - int(ayah_start) + 1
                 precache_container = st.container()
                 with precache_container:
