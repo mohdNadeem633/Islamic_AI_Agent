@@ -12,6 +12,6 @@ SETTINGS.py.bak
 SETTINGS.py.orig
 
 # Large media (usually handled by cloud storage, not GitHub)
-# videos/
-audio/
-# images/
+#  videos/
+# audio/
+#  images/
