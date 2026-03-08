@@ -46,6 +46,7 @@ def build_clip(
     add_hold:       bool           = True,
     width:          int            = None,
     height:         int            = None,
+    surah_number:   int            = 0,
 ) -> ImageSequenceClip:
     """
     Build an ImageSequenceClip for audio window [trim_start, trim_end].
@@ -85,6 +86,7 @@ def build_clip(
             bg_index                 = bg_idx,
             width                    = W,
             height                   = H,
+            surah_number             = surah_number,
         )
         frames.append(frame_to_array(frame))
 

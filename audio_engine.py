@@ -166,6 +166,34 @@ def get_audio_duration(surah: int, ayah_num: int) -> float:
         return 0.0
 
 
+def get_bismillah_end_time(audio_path: str) -> float:
+    """
+    Get the estimated end time of Bismillah recitation in Ayah 1 audio.
+    
+    Most reciters take 3-5 seconds for Bismillah. We analyze the audio
+    to find a natural pause or use a reasonable default.
+    """
+    if not audio_path or not os.path.exists(audio_path):
+        return float(getattr(config, "BISMILLAH_DURATION", 4.0))
+    
+    try:
+        # Get total audio duration
+        from moviepy.editor import AudioFileClip
+        audio = AudioFileClip(audio_path)
+        total_duration = float(audio.duration)
+        audio.close()
+        
+        # Bismillah is typically 20-30% of the first ayah audio
+        # (Bismillah is relatively short compared to the full verse)
+        bismi_end = min(total_duration * 0.25, 5.0)  # Cap at 5 seconds
+        
+        return bismi_end
+    except Exception as e:
+        # Fallback to configured duration
+        print(f"[WARN] Could not analyze audio for Bismillah timing: {e}")
+        return float(getattr(config, "BISMILLAH_DURATION", 4.0))
+
+
 def download_bismillah(surah: int) -> Optional[str]:
     """
     Download Bismillah (intro) for the given surah.
