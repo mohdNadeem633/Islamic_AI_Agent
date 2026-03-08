@@ -98,6 +98,10 @@ ARABIC_DEFAULT_COLOR = (255, 255, 255, 255)  # White
 ENGLISH_DEFAULT_COLOR = (255, 255, 255, 255)  # White
 REFERENCE_COLOR = (220, 220, 220, 255)  # Light gray
 
+# Custom colors (user-settable)
+ARABIC_TEXT_COLOR = (255, 255, 255, 255)  # Default white
+ENGLISH_TEXT_COLOR = (255, 255, 255, 255)  # Default white
+
 # Highlight colors (when word is being recited) - THE RED COLOR
 ARABIC_HIGHLIGHT_COLOR = (220, 40, 20, 255)  # Red
 ENGLISH_HIGHLIGHT_COLOR = (220, 40, 20, 255)  # Red
@@ -123,6 +127,9 @@ BG_CHANGE_INTERVAL = 30
 BG_BLUR_AMOUNT = 0  # 0-10, 0=no blur, 10=heavy blur
 BG_DARKEN_PERCENT = 0  # 0-50, 0=normal, 50=very dark
 BG_BRIGHTNESS_ADJUST = 0  # -50 to +50
+
+# Custom background (user-uploaded)
+CUSTOM_BACKGROUND_PATH = None  # Path to custom background image
 
 # ═══════════════════════════════════════════════════════════
 # 🎥 VIDEO QUALITY (PROFESSIONAL OUTPUT)

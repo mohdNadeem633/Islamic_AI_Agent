@@ -1,24 +1,44 @@
 {
-  "surah_number": 103,
-  "surah_name_ar": "سُورَةُ العَصۡرِ",
-  "surah_name_en": "Al-Asr",
+  "surah_number": 1,
+  "surah_name_ar": "سُورَةُ ٱلْفَاتِحَةِ",
+  "surah_name_en": "Al-Faatiha",
   "revelation_type": "Meccan",
-  "number_of_ayahs": 3,
+  "number_of_ayahs": 7,
   "ayahs": [
     {
       "number": 1,
-      "arabic": "بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ وَٱلۡعَصۡرِ\n",
-      "english": "By time,"
+      "arabic": "بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ\n",
+      "english": "In the name of Allah, the Entirely Merciful, the Especially Merciful."
     },
     {
       "number": 2,
-      "arabic": "إِنَّ ٱلۡإِنسَـٰنَ لَفِی خُسۡرٍ\n",
-      "english": "Indeed, mankind is in loss,"
+      "arabic": "ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَـٰلَمِینَ\n",
+      "english": "[All] praise is [due] to Allah, Lord of the worlds -"
     },
     {
       "number": 3,
-      "arabic": "إِلَّا ٱلَّذِینَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّـٰلِحَـٰتِ وَتَوَاصَوۡا۟ بِٱلۡحَقِّ وَتَوَاصَوۡا۟ بِٱلصَّبۡرِ\n",
-      "english": "Except for those who have believed and done righteous deeds and advised each other to truth and advised each other to patience."
+      "arabic": "ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ\n",
+      "english": "The Entirely Merciful, the Especially Merciful,"
+    },
+    {
+      "number": 4,
+      "arabic": "مَـٰلِكِ یَوۡمِ ٱلدِّینِ\n",
+      "english": "Sovereign of the Day of Recompense."
+    },
+    {
+      "number": 5,
+      "arabic": "إِیَّاكَ نَعۡبُدُ وَإِیَّاكَ نَسۡتَعِینُ\n",
+      "english": "It is You we worship and You we ask for help."
+    },
+    {
+      "number": 6,
+      "arabic": "ٱهۡدِنَا ٱلصِّرَ ٰ⁠طَ ٱلۡمُسۡتَقِیمَ\n",
+      "english": "Guide us to the straight path -"
+    },
+    {
+      "number": 7,
+      "arabic": "صِرَ ٰ⁠طَ ٱلَّذِینَ أَنۡعَمۡتَ عَلَیۡهِمۡ غَیۡرِ ٱلۡمَغۡضُوبِ عَلَیۡهِمۡ وَلَا ٱلضَّاۤلِّینَ\n",
+      "english": "The path of those upon whom You have bestowed favor, not of those who have evoked [Your] anger or of those who are astray."
     }
   ]
 }

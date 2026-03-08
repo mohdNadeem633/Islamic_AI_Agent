@@ -122,19 +122,24 @@ def load_background(index: int = 0,
     w = width  or config.WIDTH
     h = height or config.HEIGHT
     
-    paths = list_background_paths()
-    if not paths:
-        # Fallback solid color
-        return Image.new("RGBA", (w, h), (240, 235, 230, 255))
+    # Check for custom background
+    custom_path = getattr(config, "CUSTOM_BACKGROUND_PATH", None)
+    if custom_path and os.path.exists(custom_path):
+        path = custom_path
+    else:
+        paths = list_background_paths()
+        if not paths:
+            # Fallback solid color
+            return Image.new("RGBA", (w, h), (240, 235, 230, 255))
 
-    # If caller provided an index, pick deterministically from the list.
-    try:
-        if index is not None and int(index) >= 0:
-            path = paths[int(index) % len(paths)]
-        else:
+        # If caller provided an index, pick deterministically from the list.
+        try:
+            if index is not None and int(index) >= 0:
+                path = paths[int(index) % len(paths)]
+            else:
+                path = _get_next_random_background()
+        except Exception:
             path = _get_next_random_background()
-    except Exception:
-        path = _get_next_random_background()
     
     key = (path, w, h)
     

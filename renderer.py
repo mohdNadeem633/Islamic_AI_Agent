@@ -48,7 +48,7 @@ def _region_luminance(bg: Image.Image, y_top: int, y_bottom: int,
 
 
 def _text_style(bg: Image.Image, y_top: int, y_bottom: int,
-                width: int, height: int):
+                width: int, height: int, text_type: str = "arabic"):
     """
     Return (default_fill, stroke_fill, stroke_width) tuned to the
     background brightness in the given region.
@@ -57,7 +57,11 @@ def _text_style(bg: Image.Image, y_top: int, y_bottom: int,
     Light background → near-black text, white stroke (halo)
     """
     if not getattr(config, "AUTO_CONTRAST", True):
-        return config.ARABIC_DEFAULT_COLOR, (0, 0, 0, 140), 1
+        if text_type == "arabic":
+            color = getattr(config, "ARABIC_TEXT_COLOR", config.ARABIC_DEFAULT_COLOR)
+        else:
+            color = getattr(config, "ENGLISH_TEXT_COLOR", config.ENGLISH_DEFAULT_COLOR)
+        return color, (0, 0, 0, 140), 1
 
     luma = _region_luminance(bg, y_top, y_bottom, width, height)
     sw   = getattr(config, "TEXT_STROKE_WIDTH", 2)
@@ -186,7 +190,7 @@ def render_frame(
 
     ar_top    = sy(config.ARABIC_CENTER_Y) - 200
     ar_bottom = sy(config.ARABIC_CENTER_Y) + 200
-    ar_default, ar_stroke_fill, ar_sw = _text_style(bg, ar_top, ar_bottom, W, H)
+    ar_default, ar_stroke_fill, ar_sw = _text_style(bg, ar_top, ar_bottom, W, H, "arabic")
     ar_highlight = config.ARABIC_HIGHLIGHT_COLOR
 
     block_h = len(ar_lines) * (config.ARABIC_FONT_SIZE + config.ARABIC_LINE_GAP)
@@ -209,7 +213,7 @@ def render_frame(
 
     en_top    = sy(config.ENGLISH_Y_START)
     en_bottom = sy(config.ENGLISH_Y_START) + 200
-    en_default, en_stroke_fill, en_sw = _text_style(bg, en_top, en_bottom, W, H)
+    en_default, en_stroke_fill, en_sw = _text_style(bg, en_top, en_bottom, W, H, "english")
     en_highlight = config.ENGLISH_HIGHLIGHT_COLOR
 
     ey = sy(config.ENGLISH_Y_START)
