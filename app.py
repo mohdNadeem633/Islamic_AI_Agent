@@ -268,6 +268,17 @@ with col2:
         help="Color for English text"
     )
 
+# Page settings
+st.sidebar.subheader("📄 Page Settings")
+words_per_page = st.sidebar.slider(
+    "Words Per Page",
+    min_value=10,
+    max_value=50,
+    value=getattr(config, "WORDS_PER_PAGE", 25),
+    step=1,
+    help="Number of words to display on a single page (20-30 recommended)"
+)
+
 # Duration settings
 st.sidebar.subheader("⏱️ Duration Settings")
 reel_min = st.sidebar.number_input(
@@ -327,6 +338,7 @@ if st.button("🚀 Generate Videos", use_container_width=True, type="primary"):
     config.ENGLISH_TEXT_COLOR = tuple(int(english_color.lstrip('#')[i:i+2], 16) for i in (0, 2, 4)) + (255,)
     config.ARABIC_CENTER_Y = arabic_y
     config.ENGLISH_Y_START = english_y
+    config.WORDS_PER_PAGE = words_per_page
 
     with st.spinner("🎬 Generating videos... This may take a few minutes..."):
         try:

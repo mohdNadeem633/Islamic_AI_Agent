@@ -36,6 +36,14 @@ BISMILLAH_DURATION = 4.0
 BISMILLAH_HOLD_TIME = 0.5
 
 # ═══════════════════════════════════════════════════════════
+# 📄 PAGE SETTINGS (WORD WRAPPING & PAGINATION)
+# ═══════════════════════════════════════════════════════════
+
+# Number of words to display per page
+# If an ayah exceeds this, it will be split into multiple pages
+WORDS_PER_PAGE = 25  # Recommended: 20-30 words per page
+
+# ═══════════════════════════════════════════════════════════
 # ⏱️ TIMING CONTROL (PROFESSIONAL SETTINGS)
 # ═══════════════════════════════════════════════════════════
 
@@ -90,17 +98,10 @@ REFERENCE_Y = 1650  # Reference line position
 # 🌈 COLORS (PROFESSIONAL PALETTE)
 # ═══════════════════════════════════════════════════════════
 
-# Auto-adapt text color to background
-AUTO_CONTRAST = True  # Recommended: True
-
-# Default text colors (when not highlighted)
-ARABIC_DEFAULT_COLOR = (255, 255, 255, 255)  # White
-ENGLISH_DEFAULT_COLOR = (255, 255, 255, 255)  # White
-REFERENCE_COLOR = (220, 220, 220, 255)  # Light gray
-
-# Custom colors (user-settable)
-ARABIC_TEXT_COLOR = (255, 255, 255, 255)  # Default white
-ENGLISH_TEXT_COLOR = (255, 255, 255, 255)  # Default white
+# Text colors (RGBA tuples)
+ARABIC_TEXT_COLOR = (255, 255, 255, 255)  # White
+ENGLISH_TEXT_COLOR = (255, 255, 255, 255)  # White
+REFERENCE_TEXT_COLOR = (255, 255, 255, 255)  # White
 
 # Highlight colors (when word is being recited) - THE RED COLOR
 ARABIC_HIGHLIGHT_COLOR = (220, 40, 20, 255)  # Red
@@ -112,6 +113,13 @@ TEXT_STROKE_WIDTH = 2  # Thickness of text outline
 # ═══════════════════════════════════════════════════════════
 # 🖼️ BACKGROUND SETTINGS (PROFESSIONAL LOOK)
 # ═══════════════════════════════════════════════════════════
+
+# Background image/video paths
+CUSTOM_BACKGROUND_PATH = None  # Set to a file path if you want a custom background
+
+# Background video settings (if using video backgrounds)
+BACKGROUND_VIDEO_START_TIME = 0  # Start time in video (seconds)
+BACKGROUND_VIDEO_DURATION = 30  # How long to play video (seconds)
 
 # Background change strategy
 BG_CHANGE_MODE = "per_ayah"  # Options:
